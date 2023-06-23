@@ -1,0 +1,24 @@
+ .schema members_member
+==
+CREATE TABLE IF NOT EXISTS 
+"members_member"
+ ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+ "firstname" varchar(255) NOT NULL,
+ "lastname" varchar(255) NOT NULL,
+ "joined_date" date NULL,
+ "phone" integer NULL,
+ "fees_balance" decimal NULL,
+ "fees_paid" integer NULL,
+ "fees_paid_date" date NULL);
+==
+
+
+
+
+
+
+
+
+
+
+

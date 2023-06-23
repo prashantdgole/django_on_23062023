@@ -1,0 +1,9 @@
+.schema members_post
+CREATE VIEW members_post AS SELECT * from posts_post order by id desc
+/* members_post(id,text) */;
+
+
+ CREATE VIEW members_blog AS SELECT * from blog_blog order by id desc;
+
+
+

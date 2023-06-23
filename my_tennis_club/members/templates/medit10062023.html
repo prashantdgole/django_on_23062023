@@ -1,0 +1,56 @@
+<!-- my_tennis_club/ my_tennis_club/members/templates/all_members.html: -->
+
+{% extends  "base.html" %}   <!-- "master.html" %} -->
+{% block title %}
+Edit members
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+<hr>
+<h5>Add member</h5>
+<p> <a href="madd/">Add  Members</a> &nbsp;&nbsp;&nbsp;
+         <a href="/medit/">Edit Members</a>&nbsp;&nbsp;&nbsp;
+         <a href="/mshow/">Show/View</a>&nbsp;&nbsp;&nbsp;
+         <a href="/mdelete/">Delete Members</a>     
+  </p>
+ <hr>
+ <center>
+<form action="addrecord/" method="post">
+{% csrf_token %}
+ 
+{% if myeditdelete ==  1 %}
+  <h6> Please Select Member ID / Name For Editing :  </h6>
+{% else %}
+  <h6> Please Select Member ID / Name For Deletion  :  </h6>
+{% endif %}
+<br><br>
+<table border="1">
+<tr> <td> First Name: </td> 
+        <td> <input type="text" id="name" required  name="first"> </td>
+<tr>
+<tr> <td>Last Name: </td>
+        <td> <input  type="text" id="last" required name="last"> </td>
+</tr>
+<tr> <td> Joined Date: </td>
+         <td> <input type="date" id="jdate" required  name="jdate"> </td>
+</tr>
+<tr> <td> Phone: </td>
+        <td> <input type="text" id="phone" required name="phone"> </td>
+</tr>
+<tr> <td> Fees Balance : </td>
+        <td> <input type="text" id="feesbalance" required name="feesbalance"> </td>
+</tr>
+<tr> <td> Fees Paid :  </td>
+        <td> <input type="text" id="feespaid" required name="feespaid"> </td>
+</tr>
+<tr> <td> Fees Paid Date: </td>
+        <td> <input type="date" id="feespaiddate"  required name="feespaiddate">  </td>
+</tr>
+</table>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+{% endblock %}

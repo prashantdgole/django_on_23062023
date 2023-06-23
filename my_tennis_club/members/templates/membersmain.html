@@ -1,0 +1,22 @@
+<!-- my_tennis_club/ my_tennis_club/members/templates/all_members.html: -->
+
+{% extends  "base.html" %}   <!-- "master.html" %} -->
+{% block title %}
+List of all members
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+<!-- <p><a href="/">HOME</a></p> -->
+<hr>
+<h4>Members  Home Page </h4>
+ <p> <a href="/madd/">Add  Members</a> &nbsp;&nbsp;&nbsp;
+         <a href="/medit/">Edit Members</a>&nbsp;&nbsp;&nbsp;
+         <a href="/mshow/">Show/View</a>&nbsp;&nbsp;&nbsp;
+         <a href="/mdelete/">Delete Members</a>     
+  </p>
+ <hr>
+</body>
+</html>
+{% endblock %}

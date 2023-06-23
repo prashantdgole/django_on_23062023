@@ -1,0 +1,57 @@
+<!-- my_tennis_club/ my_tennis_club/members/templates/all_members.html: -->
+
+{% extends  "base.html" %}   <!-- "master.html" %} -->
+{% block title %}
+List of all members
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+<hr>
+<h5>Add  Voucher</h5>
+ <p> <a href="/vadd/">Add Voucher</a> &nbsp;&nbsp;&nbsp;
+         <a href="/vedit/">edit Voucher</a>&nbsp;&nbsp;&nbsp;
+         <a href="/vouchers/">show/view</a>&nbsp;&nbsp;&nbsp;
+         <a href="/vdelete/">Delete Vouchers</a>     
+  </p>
+ <hr>
+<form action="voucheraddrecord/" method="post">
+{% csrf_token %}
+<table border="1">
+<tr> <td> Voucher Date: </td> 
+        <td> <input type="date" id="vvoucher_date" required  name="vvoucher_date"> </td>
+<tr>
+<tr> <td>Paid To : </td>
+        <td> <input  type="text" id="vpaid_to" required name="vpaid_to"> </td>
+</tr>
+<tr> <td> Voucher Amount: </td>
+         <td> <input type="tet" id="vvoucher_amount" required  name="vvoucher_amount"> </td>
+</tr>
+<tr> <td> Debit/Creit: </td>
+        <td> <Select Name="vdebitcredit" id="vdebitcredit">
+                 <option value="DEBIT">DEBIT </option>
+                <option value="CREDIT">CREDIT </option>
+                 </select>
+       </td>
+</tr>
+<tr> <td> Bank / Cash Transaction : </td>
+        <td> <Select Name="vbankorcash" id="vbankorcash">
+                <option value="BANK">BANK </option> 
+                <option value="CASH">CASH </option>
+                <option value="NEFT">NEFT </option>
+                </select>
+       </td>
+</tr>
+<tr> <td> Narration Line 1 :  </td>
+        <td> <input type="text" id="vnarration1" required name="vnarration1"> </td>
+</tr>
+<tr> <td> Narration Line 2 : </td>
+        <td> <input type="text" id="vnarration2"  required name="vnarration2">  </td>
+</tr>
+</table>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+{% endblock %}

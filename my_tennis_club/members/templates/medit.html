@@ -1,0 +1,112 @@
+<!-- my_tennis_club/ my_tennis_club/members/templates/all_members.html: -->
+
+{% extends  "base.html" %}   <!-- "master.html" %} -->
+{% block title %}
+Edit members
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function onselectchange()
+{
+   var sel = document.myedit.selecteditmid.value;   // document.getElementById('selecteditmid');
+    var strUser = sel; // sel.options[sel.selectedIndex].text;  //getting the selected option's text
+    document.myedit.memid.value=strUser;
+    document.myedit.md.value=strUser;
+}
+function loadid()
+{
+alert(document.medit.memid.value);
+ document.medit.md.value= document.medit.memid.value;
+}
+</script>
+</head>
+<body>
+<hr>
+<h5>Add member</h5>
+<p> <a href="/madd/">Add  Members</a> &nbsp;&nbsp;&nbsp;
+         <a href="/medit/">Edit Members</a>&nbsp;&nbsp;&nbsp;
+         <a href="/mshow/">Show/View</a>&nbsp;&nbsp;&nbsp;
+         <a href="/mdelete/">Delete Members</a>     
+  </p>
+ <hr>
+ <center>
+
+{% if myeditdelete ==  1 %}
+<form name="myedit" action="membeditdetails/" method="post">
+{% csrf_token %}
+{% else %}
+<form name="myedit"  action="membdeletedetails/" method="post">
+{% csrf_token %}
+{% endif %}
+
+{% if myeditdelete ==  1 %}
+  <h6> Please Select Member ID / Name For Editing :  </h6>
+  <select name="selecteditmid" id="selecteditmid" onchange="onselectchange()">
+  <option value="">---------</option>
+  {% for mymembers in mymembers %}
+   <option value="{{ mymembers.id }}">{{ mymembers.firstname }}</option>
+   {% endfor %}
+   </select>  &nbsp;&nbsp;<input type="text"  hidden name="memid" id="memid">
+   <a href="javascript:;" onclick="this.href='membeditdetails/'+ document.myedit.memid.value">Edit Me </a>
+  
+<br><br>
+
+<table border="1">
+ <tr> <td> id </td> <td> First Name </td> <td> Sur name </td> <td> Phone </td> <td> Joined Date </td>
+         <td>Fess Balance </td> <td> Fees Paid </td><td>Fees Paid Date </td>
+  </tr>
+  {% for x in mymembers %}
+   <tr>
+<!--    <td> <a href="details/{{ x.id }}">{{ x.id}} </a>  </td> -->
+   <td> <a href="membeditdetails/{{ x.id }}">{{ x.id}} </a>  </td>
+    <td>  {{ x.firstname }} </td>
+   <td>   {{ x.lastname }} </td>
+   <td>  {{ x.phone }}  </td>
+   <td> {{ x.joined_date }} </td>
+   <td> {{ x.fees_balance }} </td>
+   <td> {{ x.fees_paid }} </td>
+   <td> {{ x.fees_paid_date }} </td>
+    </tr>
+  {% endfor %}
+  </table>
+
+{% else %}
+  <h6> Please Select Member ID / Name For Deletion  :  </h6>
+  <select name="selectdeletemid"  id="selecteditmid" onchange="onselectchange()">
+  <option value="">---------</option>
+  {% for mymembers in mymembers %}
+   <option value="{{ mymembers.id }}">{{ mymembers.firstname }}</option>
+   {% endfor %}
+   </select>  &nbsp;&nbsp;<input type="text"  hidden name="memid" id="memid">
+   <a href="javascript:;" onclick="this.href='membdeletedetails/'+ document.myedit.memid.value">Delete Me </a>
+
+
+<br><br>
+
+<table border="1">
+ <tr> <td> id </td> <td> First Name </td> <td> Sur name </td> <td> Phone </td> <td> Joined Date </td>
+         <td>Fess Balance </td> <td> Fees Paid </td><td>Fees Paid Date </td>
+  </tr>
+  {% for x in mymembers %}
+   <tr>
+<!--    <td> <a href="details/{{ x.id }}">{{ x.id}} </a>  </td> -->
+   <td> <a href="membdeletedetails/{{ x.id }}">{{ x.id}} </a>  </td>
+    <td>  {{ x.firstname }} </td>
+   <td>   {{ x.lastname }} </td>
+   <td>  {{ x.phone }}  </td>
+   <td> {{ x.joined_date }} </td>
+   <td> {{ x.fees_balance }} </td>
+   <td> {{ x.fees_paid }} </td>
+   <td> {{ x.fees_paid_date }} </td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endif %}
+
+</form>
+</body>
+</html>
+{% endblock %}

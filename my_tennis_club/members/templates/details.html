@@ -1,0 +1,31 @@
+<!--c:\my_tennis_club\ my_tennis_club/members/templates/details.html: -->
+{% extends "base.html" %} <!--  "master.html" %} -->
+{% block title %}
+  Details about {{ mymember.firstname }} {{ mymember.lastname }}
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<body>
+<hr>
+  <p> <a href="/madd/">Add  Members</a> &nbsp;&nbsp;&nbsp;
+         <a href="/medit/">Edit Members</a>&nbsp;&nbsp;&nbsp;
+         <a href="/mshow/">Show/view</a>&nbsp;&nbsp;&nbsp;
+         <a href="/mdelete/">Delete Members</a>     
+  </p>
+<br>
+<h5> Details of  <i> {{ mymember.firstname }} {{ mymember.lastname }} </i> </h5>
+ <hr>
+<p>Phone: {{ mymember.phone }}</p>
+<p>Member since: {{ mymember.joined_date }}</p>
+ <p>Member Paid  so Far : {{mymember.fees_paid}} </p>
+<p> Member Balance To be Paid : {{mymember.fees_balance}} </p>
+<p> Member Last Paid Date : {{mymember.fees_paid_date}} </p> 
+<p>Back to <a href="/members">Members</a>  &nbsp;&nbsp;&nbsp;<a href="/">HOME</a></p>
+
+
+</body>
+</html>
+
+{% endblock %}

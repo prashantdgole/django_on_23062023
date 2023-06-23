@@ -1,0 +1,32 @@
+<!-- my_tennis_club/ my_tennis_club/members/templates/all_members.html: -->
+
+{% extends "master.html" %}
+{% block title %}
+  My Tennis Club - List of all members
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+ 
+
+ <p> <a href="/">HOME</a> 
+         <a href="/members/">members</a> &nbsp;&nbsp;&nbsp;
+         <a href="/posts/">posts</a>&nbsp;&nbsp;&nbsp;
+         <a href="/blogs/">blogs</a>&nbsp;&nbsp;&nbsp;
+         <a href="/vouchersmain/">vouchers</a>     
+  </p>
+<h1>Posts  written by members and others </h1>
+<center>
+ <table border="1">
+ <tr> <td> id </td> <td> Post Made </td>   </tr>
+  {% for x in mypost %}
+   <tr>
+    <td>  {{ x.id }} </td>
+   <td>   {{ x.text }} </td>
+    </tr>
+  {% endfor %}
+  </table>
+</body>
+</html>
+{% endblock %}

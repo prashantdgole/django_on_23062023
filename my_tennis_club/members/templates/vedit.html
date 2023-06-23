@@ -1,0 +1,102 @@
+<!-- my_tennis_club/ my_tennis_club/members/templates/all_members.html: -->
+
+{% extends  "base.html" %}   <!-- "master.html" %} -->
+{% block title %}
+Edit Vouchers
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function onselectchange()
+{
+   var sel = document.myvedit.selecteditvid.value;   // document.getElementById('selecteditmid');
+   var strUser = sel; // sel.options[sel.selectedIndex].text;  //getting the selected option's text
+   document.myvedit.vemid.value=strUser;
+}
+</script>
+</head>
+<body>
+<hr>
+<h5>Edit  Voucher</h5>
+ <p> <a href="/vadd/">Add Voucher</a> &nbsp;&nbsp;&nbsp;
+         <a href="/vedit/">edit Voucher</a>&nbsp;&nbsp;&nbsp;
+         <a href="/vouchers/">show/view</a>&nbsp;&nbsp;&nbsp;
+         <a href="/vdelete/">Delete Vouchers</a>     
+  </p>
+ <hr>
+
+<center>
+
+{% if myveditdelete ==  1 %}
+<form name="myvedit" action="vouchereditdetails/" method="post">
+{% csrf_token %}
+{% else %}
+<form name="myvedit"  action="voucherdeletedetails/" method="post">
+{% csrf_token %}
+{% endif %}
+
+{% if myveditdelete ==  1 %}
+  <h6> Please Select Voucher ID / Paid To For Editing :  </h6>
+  <select name="selecteditvid" id="selecteditvid" onchange="onselectchange()">
+  <option value="">---------</option>
+  {% for myvoucher in myvoucher %}
+   <option value="{{ myvoucher.id }}">{{myvoucher.paid_to }} {{myvoucher.voucherdate }}</option>
+   {% endfor %}
+   </select>  &nbsp;&nbsp;<input type="text"  hidden name="vemid" id="vemid">
+   <a href="javascript:;" onclick="this.href='vouchereditdetails/'+ document.myvedit.vemid.value">Edit Voucher </a>
+  
+<br><br>
+
+<center>
+ <table border="1">
+ <tr> <td> id </td> <td>Voucher Date </td> <td> Paid To </td><td>Amount</td> <td> Dr/Cr </td> <td> Bank/Cash </td><td>Narration 1 and Narration 2  </tr>
+  {% for x in myvoucher %}
+   <tr>
+ 
+  <!--  <td> <a href="details/{{ x.id }}">{{ x.id}} </a>  </td> -->
+   <td> <a href="vouchereditdetails/{{ x.id }}">{{ x.id}} </a>  </td>
+    <td>  {{ x.voucherdate }} </td>
+   <td>   {{ x.paid_to }} </td>
+   <td>   {{x.voucheramount}} </td>
+   <td>  {{ x.debitcredit }}  </td>
+   <td> {{ x.bankorcash }} </td>
+   <td> {{ x.narration1 }} <br> {{x.narration2}} </td>
+    </tr>   
+  {% endfor %}
+  </table>
+{% else %}
+  <h6> Please Select Voucher ID / Paid To For Deleting :  </h6>
+  <select name="selecteditvid" id="selecteditvid" onchange="onselectchange()">
+  <option value="">---------</option>
+  {% for myvoucher in myvoucher %}
+   <option value="{{ myvoucher.id }}">{{myvoucher.paid_to }} {{myvoucher.voucherdate }}</option>
+   {% endfor %}
+   </select>  &nbsp;&nbsp;<input type="text"  hidden name="vemid" id="vemid">
+   <a href="javascript:;" onclick="this.href='voucherdeletedetails/'+ document.myvedit.vemid.value">Delete Voucher </a>
+  
+<br><br>
+
+<center>
+ <table border="1">
+ <tr> <td> id </td> <td>Voucher Date </td> <td> Paid To </td><td>Amount</td> <td> Dr/Cr </td> <td> Bank/Cash </td><td>Narration 1 and Narration 2  </tr>
+  {% for x in myvoucher %}
+   <tr>
+ 
+  <!--  <td> <a href="details/{{ x.id }}">{{ x.id}} </a>  </td> -->
+   <td> <a href="voucherdeletedetails/{{ x.id }}">{{ x.id}} </a>  </td>
+    <td>  {{ x.voucherdate }} </td>
+   <td>   {{ x.paid_to }} </td>
+   <td>   {{x.voucheramount}} </td>
+   <td>  {{ x.debitcredit }}  </td>
+   <td> {{ x.bankorcash }} </td>
+   <td> {{ x.narration1 }} <br> {{x.narration2}} </td>
+    </tr>   
+  {% endfor %}
+  </table>
+{% endif %}
+</form>
+</body>
+</html>
+{% endblock %}

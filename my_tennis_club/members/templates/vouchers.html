@@ -1,0 +1,38 @@
+<!-- my_tennis_club/ my_tennis_club/members/templates/all_members.html: -->
+
+{% extends "base.html" %}  <!--  "master.html" %} -->
+{% block title %}
+  Vouchers List
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+<hr>
+<h4>Show Vouchers</h4>
+<p> <a href="/vadd/">Add Voucher</a> &nbsp;&nbsp;&nbsp;
+         <a href="/vedit/">edit Voucher</a>&nbsp;&nbsp;&nbsp;
+         <a href="/vouchers/">show/view</a>&nbsp;&nbsp;&nbsp;
+         <a href="/vdelete/">Delete Vouchers</a>     
+  </p>
+ <hr>
+<center>
+ <table border="1">
+ <tr> <td> id </td> <td>Voucher Date </td> <td> Paid To </td><td>Amount</td> <td> Dr/Cr </td> <td> Bank/Cash </td><td>Narration 1 and Narration 2  </tr>
+  {% for x in myvouchers %}
+   <tr>
+ 
+  <!--  <td> <a href="details/{{ x.id }}">{{ x.id}} </a>  </td> -->
+   <td>  {{x.id}} </td>
+    <td>  {{ x.voucherdate }} </td>
+   <td>   {{ x.paid_to }} </td>
+   <td>   {{x.voucheramount}} </td>
+   <td>  {{ x.debitcredit }}  </td>
+   <td> {{ x.bankorcash }} </td>
+   <td> {{ x.narration1 }} <br> {{x.narration2}} </td>
+    </tr>   
+  {% endfor %}
+  </table>
+</body>
+</html>
+{% endblock %}

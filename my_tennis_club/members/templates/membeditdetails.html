@@ -1,0 +1,59 @@
+<!--c:\my_tennis_club\ my_tennis_club/members/templates/details.html: -->
+{% extends "base.html" %} <!--  "master.html" %} -->
+{% block title %}
+  Details about {{ mymember.firstname }} {{ mymember.lastname }}
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<body>
+<hr>
+  <p> <a href="/madd/">Add  Members</a> &nbsp;&nbsp;&nbsp;
+         <a href="/medit/">Edit Members</a>&nbsp;&nbsp;&nbsp;
+         <a href="/mshow/">Show/view</a>&nbsp;&nbsp;&nbsp;
+         <a href="/mdelete/">Delete Members</a>     
+  </p>
+<br>
+<h5> Details of  <i> {{ mymember.firstname }} {{ mymember.lastname }} </i> </h5>
+ <hr>
+<p>Phone: {{ mymember.phone }}</p>
+<p>Member since: {{ mymember.joined_date }}</p>
+ <p>Member Paid  so Far : {{mymember.fees_paid}} </p>
+<p> Member Balance To be Paid : {{mymember.fees_balance}} </p>
+<p> Member Last Paid Date : {{mymember.fees_paid_date}} </p> 
+<p>Back to <a href="/members">Members</a>  &nbsp;&nbsp;&nbsp;<a href="/">HOME</a></p>
+
+<form action="editrecord/{{ mymember.id }}" method="post">
+{% csrf_token %}
+<table border="1">
+<tr> <td> First Name: </td> 
+        <td> <input type="text" id="name" required value="{{ mymember.firstname }}"  name="first"> </td>
+<tr>
+<tr> <td>Last Name: </td>
+        <td> <input  type="text" id="last" required  value="{{ mymember.lastname }}" name="last"> </td>
+</tr>
+<tr> <td> Joined Date: </td>  
+         <td> <input type="date" id="jdate" required value="{{mymember.joined_date|date:'Y-m-d'}}"  name="jdate"> </td>
+</tr>
+<tr> <td> Phone: </td>
+        <td> <input type="text" id="phone" required value="{{ mymember.phone }}" name="phone"> </td>
+</tr>
+<tr> <td> Fees Balance : </td>
+        <td> <input type="text" id="feesbalance" required value="{{mymember.fees_balance}}" name="feesbalance"> </td>
+</tr>
+<tr> <td> Fees Paid :  </td>
+        <td> <input type="text" id="feespaid" required value="{{mymember.fees_paid}}" name="feespaid"> </td>
+</tr>
+<tr> <td> Fees Paid Date: </td>
+        <td> <input type="date" id="feespaiddate" value="{{mymember.fees_paid_date|date:'Y-m-d'}}"  required name="feespaiddate">  </td>
+</tr>
+</table>
+<input type="submit" value="Submit">
+</form>
+
+
+</body>
+</html>
+
+{% endblock %}
